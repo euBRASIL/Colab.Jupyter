@@ -1,0 +1,109 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "private_outputs": true,
+      "provenance": [],
+      "authorship_tag": "ABX9TyPqApI+7o2KZiMpP0dAiq5G",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/euBRASIL/Colab.Jupyter/blob/main/PIXPython\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pip install qrcode"
+      ],
+      "metadata": {
+        "id": "lRad4JVO8BAT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import qrcode"
+      ],
+      "metadata": {
+        "id": "RK3Uycep8LSp"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pip install pixqrcodegen"
+      ],
+      "metadata": {
+        "id": "FTe6n2Vb4f-m"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "t4RNV4nR4ajv"
+      },
+      "outputs": [],
+      "source": [
+        "# Importando o módulo\n",
+        "from pixqrcodegen import Payload\n",
+        "\n",
+        "# Parâmetros necessários\n",
+        "# payload = Payload(nome, chavepix, valor, cidade, txtId)\n",
+        "\n",
+        "# Chamando a função responsável para gerar a Payload Pix e o QR Code\n",
+        "# payload.gerarPayload()\n",
+        "\n",
+        "#####################################################################\n",
+        "\n",
+        "\"\"\"Exemplo com dados fictícios\"\"\"\n",
+        "PIXNome = input(\"Digite o seu Nome + Sobrenome sem espaços : \")\n",
+        "PIXcpf = input(\"Digite o seu CPF sem pontuação : \")\n",
+        "\n",
+        "payload = Payload(PIXNome, PIXcpf, '1.00', 'SaoPaulo', 'euBRASIL')\n",
+        "\n",
+        "\n",
+        "\n",
+        "qrcode.make(payload.gerarPayload())"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "qr = qrcode.QRCode()\n",
+        "qr.add_data(payload.gerarPayload())\n",
+        "qr.make(fit=True)\n",
+        "\n",
+        "qr.make_image(fill_color=\"darkblue\", back_color=\"orange\")"
+      ],
+      "metadata": {
+        "id": "b-VxW-h6-Tqx"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
